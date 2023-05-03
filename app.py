@@ -18,7 +18,7 @@ def homepage():
   <h1>Enhance X-ray images right here!</h1>
   <text>Simply upload your image from the device, and click on Process, and see the results on the same window!</text>
   <br><br>
-  <form action="process_image" method="post" enctype="multipart/form-data">
+  <form action="process_image" method="get" enctype="multipart/form-data">
     <input type="file" name="image_file" accept="image/*"><br><br>
     <input type="submit" value="Process">
   </form>
@@ -26,7 +26,7 @@ def homepage():
 </html>
 """
 
-@app.route('/process_image', methods=['POST'])
+@app.route('/process_image', methods=['GET'])
 def process_image():
     img_bytes = request.files['image_file'].read()
     image = Image.open(io.BytesIO(img_bytes))
