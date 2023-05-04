@@ -1,4 +1,4 @@
-from flask import Flask, request, send_file
+from flask import Flask, request, send_file , render_template
 from PIL import Image
 import io
 import cv2
@@ -8,23 +8,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def homepage():
-    return """
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Enhance X-ray images right here!</title>
-</head>
-<body>
-  <h1>Enhance X-ray images right here!</h1>
-  <text>Simply upload your image from the device, and click on Process, and see the results on the same window!</text>
-  <br><br>
-  <form action="process_image" method="post" enctype="multipart/form-data">
-    <input type="file" name="image_file" accept="image/*"><br><br>
-    <input type="submit" value="Process">
-  </form>
-</body>
-</html>
-"""
+    return render_template('index.html')
 
 @app.route('/process_image', methods=['POST'])
 def process_image():
